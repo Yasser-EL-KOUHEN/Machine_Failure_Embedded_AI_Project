@@ -315,11 +315,15 @@ Place the `ai4i2020.csv` file in an accessible location (e.g., mount Google Driv
 4. ## Reproducibility
 For reproducible results, set random seeds for TensorFlow, NumPy, and other libraries as needed.
 
+---
+
 ## 8. References
 - [Scikit-learn: Classification Report](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.classification_report.html)
 - [Scikit-learn: ConfusionMatrixDisplay](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.ConfusionMatrixDisplay.html)
 - [Imbalanced-learn: SMOTE](https://imbalanced-learn.org/stable/references/generated/imblearn.over_sampling.SMOTE.html)
 - [TensorFlow Tutorial on Imbalanced Data](https://www.tensorflow.org/tutorials/structured_data/imbalanced_data?hl=fr)
+
+---
 
 ## 9. Authors 
 **Author:** Yasser EL KOUHEN  
