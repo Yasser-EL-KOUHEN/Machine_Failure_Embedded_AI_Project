@@ -292,3 +292,36 @@ The dataset is stored as a CSV file named `ai4i2020.csv` available on the eCAMPU
    Ensure that Python 3.x is installed and set up an environment (e.g., Google Colab). Install necessary packages using:
    ```bash
    pip install numpy pandas matplotlib seaborn tensorflow scikit-learn imbalanced-learn
+
+2. ## Data Access
+Place the `ai4i2020.csv` file in an accessible location (e.g., mount Google Drive in Colab) and update the dataset path accordingly in the code.
+
+3. ## Execution Flow
+
+**Step 1:** Load the dataset and perform Exploratory Data Analysis (EDA) to understand data distribution.
+
+**Step 2:** Preprocess the data by selecting features, encoding categorical variables, and normalizing values.
+
+**Step 3:** Split the dataset into training and testing sets.
+
+**Step 4:** Train the initial dual-output deep learning model without balancing.
+
+**Step 5:** Apply SMOTE for balancing the training set and develop separate models for binary and multi-class classification.
+
+**Step 6:** Evaluate the models using confusion matrices, classification reports, ROC curves, and feature importance analysis.
+
+**Step 7:** Review training curves to ensure model stability and check for overfitting.
+
+4. ## Reproducibility
+For reproducible results, set random seeds for TensorFlow, NumPy, and other libraries as needed.
+
+## 8. References
+- [Scikit-learn: Classification Report](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.classification_report.html)
+- [Scikit-learn: ConfusionMatrixDisplay](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.ConfusionMatrixDisplay.html)
+- [Imbalanced-learn: SMOTE](https://imbalanced-learn.org/stable/references/generated/imblearn.over_sampling.SMOTE.html)
+- [TensorFlow Tutorial on Imbalanced Data](https://www.tensorflow.org/tutorials/structured_data/imbalanced_data?hl=fr)
+
+## 9. Authors 
+**Author:** Yasser EL KOUHEN  
+**Supervision:** Professor Kévin HECTOR, Mines Saint-Étienne  
+
