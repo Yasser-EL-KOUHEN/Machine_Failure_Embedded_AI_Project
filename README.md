@@ -369,6 +369,31 @@ The script then evaluates the model by comparing the predicted output with the e
 
 During the evaluation phase using the Python communication script, the following issue was encountered:
 
+```
+PS C:\Users\ismin\Documents\Embedded_AI> python .\Communication_STM32_NN.py
+C:\Users\ismin\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\serial\__init__.py
+databases loaded
+Synchronising...
+Synchronised
+Evaluating model on STM32...
+----- Iteration 1 -----
+   Raw received bytes: b''
+   Warning: Incomplete or empty data received from STM32.
+Traceback (most recent call last):
+  File "C:\Users\ismin\Documents\Embedded_AI\Communication_STM32_NN.py", line 100, in <module>
+    error = evaluate_model_on_STM32(100, ser)
+  File "C:\Users\ismin\Documents\Embedded_AI\Communication_STM32_NN.py", line 82, in evaluate_model_on_STM32
+    if (np.argmax(output) == np.argmax(Y_test[i])):
+        ~~~~~~~~~^^^^^^^^
+  File "C:\Users\ismin\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\numpy\_core\fromnumeric.py", line 1342, in argmax
+    return _wrapfunc(a, 'argmax', axis=axis, out=out, **kwds)
+  File "C:\Users\ismin\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\numpy\_core\fromnumeric.py", line 54, in _wrapfunc
+    return _wrapit(obj, method, *args, **kwds)
+  File "C:\Users\ismin\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\numpy\_core\fromnumeric.py", line 46, in _wrapit
+    result = getattr(arr, method)(*args, **kwds)
+ValueError: attempt to get argmax of an empty sequence
+PS C:\Users\ismin\Documents\Embedded_AI> 
+
 - **Empty Data Reception:**  
   The STM32 board often did not return any data (i.e. the output from `serial_port.read(5)` was empty), leading to an error when attempting to use `np.argmax` on an empty sequence.
 
@@ -377,7 +402,7 @@ During the evaluation phase using the Python communication script, the following
 
 - **Impact on Project:**  
   While the model was successfully converted and flashed onto the STM32L4R9, the inference phase did not operate as expected. Future work should investigate alternate communication protocols, firmware optimizations, or more capable hardware for embedded inference.
-
+```
 ---
 
 ## 7. Conclusions and Future Work
