@@ -1,5 +1,5 @@
 
-# PRACTICAL SESSION 1 — Deep Learning for Predictive Maintenance & Embedded AI Deployment
+# Deep Learning for Predictive Maintenance & Embedded AI Deployment
 
 This project details an end‑to‑end deep learning solution for predictive maintenance using industrial sensor data, and its subsequent deployment on an STM32L4R9 microcontroller. The objective is to develop a robust model that can predict whether a machine will fail and, if so, determine the specific type of failure. In addition to the Colab‑based training and evaluation (including the use of SMOTE to balance a highly imbalanced dataset), the project covers:
 - Exporting the trained Keras model to TensorFlow Lite (TFLite) format.
