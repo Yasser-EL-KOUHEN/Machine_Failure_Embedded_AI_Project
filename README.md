@@ -435,4 +435,5 @@ During the evaluation phase using the Python communication script, the following
 
 **Author:** Yasser EL KOUHEN  
 **Supervision:** Professor Kévin HECTOR, Mines Saint-Étienne  
+**License:** Mines Saint-Etienne
 
