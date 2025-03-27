@@ -393,6 +393,7 @@ Traceback (most recent call last):
     result = getattr(arr, method)(*args, **kwds)
 ValueError: attempt to get argmax of an empty sequence
 PS C:\Users\ismin\Documents\Embedded_AI> 
+```
 
 - **Empty Data Reception:**  
   The STM32 board often did not return any data (i.e. the output from `serial_port.read(5)` was empty), leading to an error when attempting to use `np.argmax` on an empty sequence.
@@ -402,7 +403,7 @@ PS C:\Users\ismin\Documents\Embedded_AI>
 
 - **Impact on Project:**  
   While the model was successfully converted and flashed onto the STM32L4R9, the inference phase did not operate as expected. Future work should investigate alternate communication protocols, firmware optimizations, or more capable hardware for embedded inference.
-```
+
 ---
 
 ## 7. Conclusions and Future Work
