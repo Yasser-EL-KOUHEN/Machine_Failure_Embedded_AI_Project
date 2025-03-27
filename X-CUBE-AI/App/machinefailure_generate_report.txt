@@ -1,0 +1,215 @@
+ST Edge AI Core v2.0.0-20052
+Created date          : 2025-03-24 10:21:16
+Parameters            : generate --target stm32l4 --name machinefailure -m /Users/rosecymbler/Desktop/Mines/IAEmbarquee/Colab_IA_EMBARQUEE/IAEmbarquee/model.tflite --compression none --verbosity 1 --workspace /var/folders/x8/dzdq5kr52fv9xcgcn_pczs6m0000gn/T/mxAI_workspace208060759976529113123590666082461502 --output /Users/rosecymbler/.stm32cubemx/machinefailure_output
+
+Exec/report summary (generate)
+-----------------------------------------------------------------------------------------------------------------------------
+model file         :   /Users/rosecymbler/Desktop/Mines/IAEmbarquee/Colab_IA_EMBARQUEE/IAEmbarquee/model.tflite              
+type               :   tflite                                                                                                
+c_name             :   machinefailure                                                                                        
+compression        :   none                                                                                                  
+options            :   allocate-inputs, allocate-outputs                                                                     
+optimization       :   balanced                                                                                              
+target/series      :   stm32l4                                                                                               
+workspace dir      :   /var/folders/x8/dzdq5kr52fv9xcgcn_pczs6m0000gn/T/mxAI_workspace208060759976529113123590666082461502   
+output dir         :   /Users/rosecymbler/.stm32cubemx/machinefailure_output                                                 
+model_fmt          :   float                                                                                                 
+model_name         :   model                                                                                                 
+model_hash         :   0x5996fbd5ec443c6a004a572abce00959                                                                    
+params #           :   3,205 items (12.52 KiB)                                                                               
+-----------------------------------------------------------------------------------------------------------------------------
+input 1/1          :   'serving_default_ke..ensor_4270', f32(1x7), 28 Bytes, activations                                     
+output 1/1         :   'nl_4', f32(1x5), 20 Bytes, activations                                                               
+macc               :   3,392                                                                                                 
+weights (ro)       :   12,820 B (12.52 KiB) (1 segment)                                                                      
+activations (rw)   :   384 B (384 B) (1 segment) *                                                                           
+ram (total)        :   384 B (384 B) = 384 + 0 + 0                                                                           
+-----------------------------------------------------------------------------------------------------------------------------
+(*) 'input'/'output' buffers can be used from the activations buffer
+
+Model name - model
+------ ------------------------------------------------ ------------- ------------- ------- -------------------------------- --- ----------------- ----------------- ---------------------------- 
+m_id   layer (type,original)                            oshape        param/size       macc                     connected to   | c_size            c_macc            c_type                       
+------ ------------------------------------------------ ------------- ------------- ------- -------------------------------- --- ----------------- ----------------- ---------------------------- 
+0      serving_default_ke..ensor_4270 (Input, )         [b:1,c:7]                                                              | +2,048(+100.0%)   +576(+100.0%)     Dense_/Nonlinearity_[0, 1]   
+       sequential_62_1_de..5_1_MatMul (Placeholder, )   [b:64,c:7]    448/1,792                                                | -1,792(-100.0%)                     
+       arith_constant6 (Placeholder, )                  [b:64]        64/256                                                   | -256(-100.0%)                       
+       gemm_0 (Gemm, FULLY_CONNECTED)                   [b:1,c:64]                      512   serving_default_ke..ensor_4270   |                   -512(-100.0%)     
+                                                                                              sequential_62_1_de..5_1_MatMul   | 
+                                                                                                             arith_constant6   | 
+       nl_0_nl (Nonlinearity, FULLY_CONNECTED)          [b:1,c:64]                       64                           gemm_0   |                   -64(-100.0%)      
+------ ------------------------------------------------ ------------- ------------- ------- -------------------------------- --- ----------------- ----------------- ---------------------------- 
+1      arith_constant (Placeholder, )                   [b:32,c:64]   2,048/8,192                                              | +128(+1.6%)       +2,112(+100.0%)   Dense_/Nonlinearity_[2, 3]   
+       arith_constant1 (Placeholder, )                  [b:32]        32/128                                                   | -128(-100.0%)                       
+       gemm_1 (Gemm, FULLY_CONNECTED)                   [b:1,c:32]                    2,080                          nl_0_nl   |                   -2,080(-100.0%)   
+                                                                                                              arith_constant   | 
+                                                                                                             arith_constant1   | 
+       nl_1_nl (Nonlinearity, FULLY_CONNECTED)          [b:1,c:32]                       32                           gemm_1   |                   -32(-100.0%)      
+------ ------------------------------------------------ ------------- ------------- ------- -------------------------------- --- ----------------- ----------------- ---------------------------- 
+2      arith_constant3 (Placeholder, )                  [b:16,c:32]   512/2,048                                                | +64(+3.1%)        +544(+100.0%)     Dense_/Nonlinearity_[4, 5]   
+       arith_constant5 (Placeholder, )                  [b:16]        16/64                                                    | -64(-100.0%)                        
+       gemm_2 (Gemm, FULLY_CONNECTED)                   [b:1,c:16]                      528                          nl_1_nl   |                   -528(-100.0%)     
+                                                                                                             arith_constant3   | 
+                                                                                                             arith_constant5   | 
+       nl_2_nl (Nonlinearity, FULLY_CONNECTED)          [b:1,c:16]                       16                           gemm_2   |                   -16(-100.0%)      
+------ ------------------------------------------------ ------------- ------------- ------- -------------------------------- --- ----------------- ----------------- ---------------------------- 
+3      arith_constant2 (Placeholder, )                  [b:5,c:16]    80/320                                                   | +20(+6.2%)        +85(+100.0%)      Dense_[6]                    
+       arith_constant4 (Placeholder, )                  [b:5]         5/20                                                     | -20(-100.0%)                        
+       gemm_3 (Gemm, FULLY_CONNECTED)                   [b:1,c:5]                        85                          nl_2_nl   |                   -85(-100.0%)      
+                                                                                                             arith_constant2   | 
+                                                                                                             arith_constant4   | 
+------ ------------------------------------------------ ------------- ------------- ------- -------------------------------- --- ----------------- ----------------- ---------------------------- 
+4      nl_4 (Nonlinearity, SOFTMAX)                     [b:1,c:5]                        75                           gemm_3   |                                     Nonlinearity_[o][7]          
+------ ------------------------------------------------ ------------- ------------- ------- -------------------------------- --- ----------------- ----------------- ---------------------------- 
+model/c-model: macc=3,392/3,392  weights=12,820/12,820  activations=--/384 io=--/0
+
+
+
+Generated C-graph summary
+------------------------------------------------------------------------------------------------------------------------
+model name            : model
+c-name                : machinefailure
+c-node #              : 8
+c-array #             : 17
+activations size      : 384 (1 segment)
+weights size          : 12820 (1 segment)
+macc                  : 3392
+inputs                : ['serving_default_keras_tensor_4270_output']
+outputs               : ['nl_4_output']
+
+C-Arrays (17)
+------ ------------------------------------------ ----------- ------------------------- ------------- --------- 
+c_id   name (*_array)                             item/size   domain/mem-pool           c-type        comment   
+------ ------------------------------------------ ----------- ------------------------- ------------- --------- 
+0      gemm_0_bias                                64/256      weights/weights           const float             
+1      gemm_0_output                              64/256      activations/**default**   float                   
+2      gemm_0_weights                             448/1792    weights/weights           const float             
+3      gemm_1_bias                                32/128      weights/weights           const float             
+4      gemm_1_output                              32/128      activations/**default**   float                   
+5      gemm_1_weights                             2048/8192   weights/weights           const float             
+6      gemm_2_bias                                16/64       weights/weights           const float             
+7      gemm_2_output                              16/64       activations/**default**   float                   
+8      gemm_2_weights                             512/2048    weights/weights           const float             
+9      gemm_3_bias                                5/20        weights/weights           const float             
+10     gemm_3_output                              5/20        activations/**default**   float                   
+11     gemm_3_weights                             80/320      weights/weights           const float             
+12     nl_0_nl_output                             64/256      activations/**default**   float                   
+13     nl_1_nl_output                             32/128      activations/**default**   float                   
+14     nl_2_nl_output                             16/64       activations/**default**   float                   
+15     nl_4_output                                5/20        activations/**default**   float         /output   
+16     serving_default_keras_tensor_4270_output   7/28        activations/**default**   float         /input    
+------ ------------------------------------------ ----------- ------------------------- ------------- --------- 
+
+C-Layers (8)
+------ ---------------- ---- --------------- ------ ------ --------------------------------------------- ------------------ 
+c_id   name (*_layer)   id   layer_type      macc   rom    tensors                                       shape (array id)   
+------ ---------------- ---- --------------- ------ ------ --------------------------------------------- ------------------ 
+0      gemm_0           0    Dense           512    2048   I: serving_default_keras_tensor_4270_output   f32(1x7) (16)      
+                                                           W: gemm_0_weights                             f32(64x7) (2)      
+                                                           W: gemm_0_bias                                f32(64) (0)        
+                                                           O: gemm_0_output                              f32(1x64) (1)      
+------ ---------------- ---- --------------- ------ ------ --------------------------------------------- ------------------ 
+1      nl_0_nl          0    Nonlinearity    64     0      I: gemm_0_output                              f32(1x64) (1)      
+                                                           O: nl_0_nl_output                             f32(1x64) (12)     
+------ ---------------- ---- --------------- ------ ------ --------------------------------------------- ------------------ 
+2      gemm_1           1    Dense           2080   8320   I: nl_0_nl_output                             f32(1x64) (12)     
+                                                           W: gemm_1_weights                             f32(32x64) (5)     
+                                                           W: gemm_1_bias                                f32(32) (3)        
+                                                           O: gemm_1_output                              f32(1x32) (4)      
+------ ---------------- ---- --------------- ------ ------ --------------------------------------------- ------------------ 
+3      nl_1_nl          1    Nonlinearity    32     0      I: gemm_1_output                              f32(1x32) (4)      
+                                                           O: nl_1_nl_output                             f32(1x32) (13)     
+------ ---------------- ---- --------------- ------ ------ --------------------------------------------- ------------------ 
+4      gemm_2           2    Dense           528    2112   I: nl_1_nl_output                             f32(1x32) (13)     
+                                                           W: gemm_2_weights                             f32(16x32) (8)     
+                                                           W: gemm_2_bias                                f32(16) (6)        
+                                                           O: gemm_2_output                              f32(1x16) (7)      
+------ ---------------- ---- --------------- ------ ------ --------------------------------------------- ------------------ 
+5      nl_2_nl          2    Nonlinearity    16     0      I: gemm_2_output                              f32(1x16) (7)      
+                                                           O: nl_2_nl_output                             f32(1x16) (14)     
+------ ---------------- ---- --------------- ------ ------ --------------------------------------------- ------------------ 
+6      gemm_3           3    Dense           85     340    I: nl_2_nl_output                             f32(1x16) (14)     
+                                                           W: gemm_3_weights                             f32(5x16) (11)     
+                                                           W: gemm_3_bias                                f32(5) (9)         
+                                                           O: gemm_3_output                              f32(1x5) (10)      
+------ ---------------- ---- --------------- ------ ------ --------------------------------------------- ------------------ 
+7      nl_4             4    Nonlinearity    75     0      I: gemm_3_output                              f32(1x5) (10)      
+                                                           O: nl_4_output                                f32(1x5) (15)      
+------ ---------------- ---- --------------- ------ ------ --------------------------------------------- ------------------ 
+
+
+
+Number of operations per c-layer
+------- ------ ------------------------ ------- -------------- 
+c_id    m_id   name (type)                  #op           type 
+------- ------ ------------------------ ------- -------------- 
+0       0      gemm_0 (Dense)               512   smul_f32_f32 
+1       0      nl_0_nl (Nonlinearity)        64     op_f32_f32 
+2       1      gemm_1 (Dense)             2,080   smul_f32_f32 
+3       1      nl_1_nl (Nonlinearity)        32     op_f32_f32 
+4       2      gemm_2 (Dense)               528   smul_f32_f32 
+5       2      nl_2_nl (Nonlinearity)        16     op_f32_f32 
+6       3      gemm_3 (Dense)                85   smul_f32_f32 
+7       4      nl_4 (Nonlinearity)           75     op_f32_f32 
+------- ------ ------------------------ ------- -------------- 
+total                                     3,392 
+
+Number of operation types
+---------------- ------- ----------- 
+operation type         #           % 
+---------------- ------- ----------- 
+smul_f32_f32       3,205       94.5% 
+op_f32_f32           187        5.5% 
+
+Complexity report (model)
+------ ----------------------------------- ------------------------- ------------------------- -------- 
+m_id   name                                c_macc                    c_rom                     c_id     
+------ ----------------------------------- ------------------------- ------------------------- -------- 
+0      serving_default_keras_tensor_4270   |||||             17.0%   ||||              16.0%   [0, 1]   
+1      arith_constant                      ||||||||||||||||  62.3%   ||||||||||||||||  64.9%   [2, 3]   
+2      arith_constant3                     ||||              16.0%   ||||              16.5%   [4, 5]   
+3      arith_constant2                     |                  2.5%   |                  2.7%   [6]      
+4      nl_4                                |                  2.2%   |                  0.0%   [7]      
+------ ----------------------------------- ------------------------- ------------------------- -------- 
+macc=3,392 weights=12,820 act=384 ram_io=0
+ 
+ Requested memory size by section - "stm32l4" target
+ ------------------------------ ------- -------- ------- ----- 
+ module                            text   rodata    data   bss 
+ ------------------------------ ------- -------- ------- ----- 
+ NetworkRuntime1000_CM4_GCC.a     7,012        0       0     0 
+ machinefailure.o                   610       64   2,236   160 
+ machinefailure_data.o               48       16      88     0 
+ lib (toolchain)*                   614       24       0     0 
+ ------------------------------ ------- -------- ------- ----- 
+ RT total**                       8,284      104   2,324   160 
+ ------------------------------ ------- -------- ------- ----- 
+ weights                              0   12,824       0     0 
+ activations                          0        0       0   384 
+ io                                   0        0       0     0 
+ ------------------------------ ------- -------- ------- ----- 
+ TOTAL                            8,284   12,928   2,324   544 
+ ------------------------------ ------- -------- ------- ----- 
+ *  toolchain objects (libm/libgcc*)
+ ** RT AI runtime objects (kernels+infrastructure)
+  
+  Summary - "stm32l4" target
+  ---------------------------------------------------
+               FLASH (ro)      %*   RAM (rw)       % 
+  ---------------------------------------------------
+  RT total         10,712   45.5%      2,484   86.6% 
+  ---------------------------------------------------
+  TOTAL            23,536              2,868         
+  ---------------------------------------------------
+  *  rt/total
+
+
+Generated files (7)
+------------------------------------------------------------------------------------ 
+/Users/rosecymbler/.stm32cubemx/machinefailure_output/machinefailure_data_params.h   
+/Users/rosecymbler/.stm32cubemx/machinefailure_output/machinefailure_data_params.c   
+/Users/rosecymbler/.stm32cubemx/machinefailure_output/machinefailure_data.h          
+/Users/rosecymbler/.stm32cubemx/machinefailure_output/machinefailure_data.c          
+/Users/rosecymbler/.stm32cubemx/machinefailure_output/machinefailure_config.h        
+/Users/rosecymbler/.stm32cubemx/machinefailure_output/machinefailure.h               
+/Users/rosecymbler/.stm32cubemx/machinefailure_output/machinefailure.c               
